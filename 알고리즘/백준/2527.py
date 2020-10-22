@@ -1,3 +1,5 @@
+# 한 조건씩 걸러진다는 걸 생각해야됨!
+
 for i in range(4):
     x1, y1, p1, q1, x2, y2, p2, q2 = map(int,input().split())
 
