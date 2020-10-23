@@ -1,3 +1,3 @@
-count = [0 for _ in range(4)]
+A = max(1, 2)
 
-print(count)
+print(A)
