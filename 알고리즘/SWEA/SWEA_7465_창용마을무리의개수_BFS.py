@@ -4,7 +4,7 @@ sys.stdin = open("7465.txt","r")
 def BFS(v):
     visited[v] = 1
     q = [v]
-    while len(q)>0:
+    while q:
         new = q.pop(0)
         for i in range(1, N+1):
             if arr[new][i]==1 and visited[i]==0:

@@ -24,7 +24,7 @@ N, M, V = map(int, input().split())
 
 arr = [[0]*(N+1) for _ in range(N+1)]
 visited = [0]*(N+1)
-
+# 연결 방식: 2. 연결배열
 for _ in range(M):
     a, b = map(int, input().split())
     arr[a][b] = arr[b][a] = 1
