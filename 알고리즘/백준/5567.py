@@ -17,8 +17,10 @@ for i in range(2, N+1):
 firstFriends = len(friends)
 
 for i in friends:
-    for j in range(1, N+1):
+    for j in range(2, N+1):
         if arr[i][j] == 1 and visited[j] == 0:
+            # 친구들의 친구가 같을 수 있으니까
+            visited[j] = 1
             firstFriends += 1
 
 print(firstFriends)
