@@ -1,3 +1,2 @@
-a = '0.4'
-
-print(a[2])
+b = 0
+print(bin(b))

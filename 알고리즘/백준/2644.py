@@ -4,10 +4,10 @@
 def BFS(v):
     global count
 
-    a = [v]
+    q = [v]
 
     while q:
-        if
+
 
 
     for i in range(1, N+1):

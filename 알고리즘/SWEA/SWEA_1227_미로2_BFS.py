@@ -10,7 +10,7 @@ def BFS(r, c):
     visited[r][c] = 1
     q = [(r,c)]
 
-    while len(q)>0:
+    while len(q):
         curr_r, curr_c = q.pop(0)
 
         for a in range(4):
