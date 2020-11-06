@@ -1,3 +1,3 @@
-list = [2, 2, 1, 1, 3]
+tuples = (1, 2)
 
-a = list.pop()
+print(tuples[0])
