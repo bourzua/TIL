@@ -9,8 +9,6 @@ info = [[],[0,1,2,3],[0,1],[2,3],[0,3],[1,3],[1,2],[0,2]]
 
 
 def go(r, c, l):
-    global count
-
     q = deque()
     q.append((r,c,l-1))
     visited[r][c] = 1
@@ -47,7 +45,7 @@ def go(r, c, l):
                 q.append((ni, nj, time-1))
 
 
-for T in range(1, int(input())):
+for T in range(1, int(input()) + 1):
     N, M, R, C, L = map(int, input().split())
 
     tunnel = [list(map(int, input().split())) for _ in range(N)]

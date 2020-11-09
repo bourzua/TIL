@@ -1,5 +1,6 @@
-import sys
-sys.setrecursionlimit(10**8)
+
+
+
 
 # 미로 탈출 가능?, 최단거리 => bfs
 

@@ -1,3 +1,1 @@
-tuples = (1, 2)
-
-print(tuples[0])
+print((-2)**2)
