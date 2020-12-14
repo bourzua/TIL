@@ -1,30 +1,31 @@
-arr = [-1, 3, -9, 6, 7, -6, 1, 5, 4, -2]
+calList = list(input().split())
+stack = []
+ans = 0
+for i in range(len(calList)):
+    if calList[i].isdigit():
+        stack.append(int(calList[i]))
+    elif calList[i] == '.':
+        if len(stack) != 1:
+            ans = 'error'
+            break
+        ans = stack.pop()
+    else:
+        if len(stack) == 0 or len(stack) == 1:
+            ans = 'error'
+            break
+        b = stack.pop()
+        a = stack.pop()
+        if calList[i] == '+':
+            c = a + b
+            stack.append(c)
+        elif calList[i] == '-':
+            c = a - b
+            stack.append(c)
+        elif calList[i] == '/':
+            c = a / b
+            stack.append(c)
+        else:
+            c = a * b
+            stack.append(c)
 
-N = len(arr)
-
-sel = [0] * N
-
-def powerset(idx):
-    global selectList
-    if idx == N:
-        total = 0
-        select = []
-        for i in range(N):
-            if sel[i]:
-                total += arr[i]
-                select.append(arr[i])
-        if total == 0:
-            selectList.append(select)
-        return
-
-    sel[idx] = 1
-    powerset(idx + 1)
-
-    sel[idx] = 0
-    powerset(idx + 1)
-
-selectList = []
-powerset(0)
-
-for i in selectList:
-    print(i)
+print(ans)

@@ -1,40 +1,41 @@
 import sys
 sys.stdin = open("4875.txt", "r")
 
-di = [-1,1,0,0]
-dj  =[0,0,-1,1]
+from collections import deque
 
-def DFS(i,j):
-    global result
-    visited[i][j] = 1
+dr = [-1, 1, 0, 0]
+dc = [0, 0, -1, 1]
 
-    if arr[i][j] == 3:
-        result = 1
-        return
+def BFS(r, c):
+    global ans
+    q = deque()
+    q.append((r, c))
+    while q:
+        curr_r, curr_c = q.popleft()
+        visited[curr_r][curr_c] = 1
 
-
-    else:
         for a in range(4):
-            ni = i + di[a]
-            nj = j + dj[a]
+            nr = curr_r + dr[a]
+            nc = curr_c + dc[a]
 
-            if ni<0 or ni>=N or nj<0 or nj>=N:
+            if nr<0 or nr>=N or nc<0 or nc>=N:
                 continue
-            if visited[ni][nj] == 1 or arr[ni][nj] == 1:
+            if visited[nr][nc] == 1:
                 continue
-            DFS(ni,nj)
+            if miro[nr][nc] == 0:
+                q.append((nr, nc))
+            if miro[nr][nc] == 3:
+                ans = 1
+                return
 
 for T in range(1, int(input())+1):
     N = int(input())
-    result = 0
-
-    arr = [list(map(int, input())) for _ in range(N)]
-
+    miro = [list(map(int, input())) for _ in range(N)]
     visited = [[0]*N for _ in range(N)]
 
+    ans = 0
     for i in range(N):
         for j in range(N):
-            if arr[i][j] == 2:
-                DFS(i,j)
-
-    print("#{} {}".format(T, result))
+            if miro[i][j] == 2:
+                BFS(i, j)
+    print("#{} {}".format(T, ans))

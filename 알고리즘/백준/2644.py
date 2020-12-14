@@ -2,36 +2,34 @@
 # 최단거리를 찾는거니까 BFS
 
 def BFS(v):
-    global count
+    flag = True
 
-    q = [v]
+    q = [(v, 0)]
 
     while q:
+        curr_v, curr_count = q.pop(0)
+        visited[curr_v] = 1
+        for i in range(N+1):
+            if visited[i] == 0 and family[curr_v][i] == 1:
+                if i == b:
+                    return curr_count + 1
+                else:
+                    q.append((i, curr_count + 1))
+    return -1
 
 
-
-    for i in range(1, N+1):
-        if family[v][i] == 1 and visited[i] == 0:
-            count +=1
-            DFS(i)
-
-
-# N = int(input())
-N = 9
-
-# a, b = map(int, input().split())
-a, b = 7, 3
-# M = int(input())
-M = 7
+N = int(input())
+a, b = map(int, input().split())
+M = int(input())
 
 family = [[0]*(N+1) for _ in range(N+1)]
 visited = [0]*(N+1)
 
-family = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 1, 1, 1], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 1, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0, 0, 0]]
+for i in range(M):
+    c, d = map(int, input().split())
+    family[c][d] = family[d][c] = 1
 
-# for i in range(M):
-#     a, b = map(int, input().split())
-#     family[a][b] = family[b][a] = 1
 count = 0
-BFS(a)
-print(count)
+ans = BFS(a)
+
+print(ans)

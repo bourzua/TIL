@@ -1,30 +1,36 @@
 import sys
 sys.stdin = open("4871.txt","r")
 
-def DFS(start):
-    global result
-    visited[start] = 1
-    for i in range(1, V+1):
-        if arr[start][i] == 1 and visited[i] == 0:
-            if i == end:
-                result = 1
-                return result
-            DFS(i)
+from collections import deque
+
+def BFS(v):
+    global ans
+    q = deque()
+    q.append(v)
+
+    while q:
+        curr_v = q.popleft()
+        visited[curr_v] = 1
+
+        for i in range(1, V+1):
+            if visited[i] == 0 and game[curr_v][i] == 1:
+                if i == G:
+                    ans = 1
+                    return
+                else:
+                    q.append(i)
+
+
 
 for T in range(1, int(input())+1):
     V, E = map(int, input().split())
-
-    arr = [[0]*(V+1) for _ in range(V+1)]
-
-    for i in range(E):
-        st, ed = map(int, input().split())
-        arr[st][ed] = 1
-
+    game = [[0]*(V+1) for _ in range(V+1)]
     visited = [0]*(V+1)
+    ans = 0
+    for _ in range(E):
+        a, b = map(int, input().split())
+        game[a][b] = 1
+    S, G = map(int, input().split())
+    BFS(S)
 
-    start, end = map(int, input().split())
-
-    result = 0
-    DFS(start)
-
-    print("#{} {}".format(T, result))
+    print("#{} {}".format(T, ans))
