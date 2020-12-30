@@ -1,17 +1,18 @@
 import sys
 sys.stdin = open("3752.txt","r")
 
+# 비트마스킹 실패(N이 너무 큼)
+
 for T in range(1, int(input())+1):
     N = int(input())
-    score = list(map(int, input().split()))
-    scoreVisited = [1] + [0]*sum(score)
-
-    score2 = [0]
-
-    for i in score:
-        for j in range(len(score2)):
-            if not scoreVisited[i+score2[j]]:
-                scoreVisited[i+score2[j]] = 1
-                score2.append(i+score2[j])
-
-    print("#{} {}".format(T,len(score2)))
+    arr = list(map(int, input().split()))
+    visited = [1] + [0]*sum(arr)
+    scores = [0]
+    for i in arr:
+        li = scores[:]
+        for j in li:
+            if not visited[i+j]:
+                visited[i+j] = 1
+                scores.append(i+j)
+    ans = len(scores)
+    print("#{} {}".format(T, ans))
