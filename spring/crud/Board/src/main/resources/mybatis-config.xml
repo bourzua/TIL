@@ -8,6 +8,6 @@
    </settings>
    
    <typeAliases>
-      <package name="aloha.domain"/>
+      <package name="zuaseyo.domain"/>
    </typeAliases>
 </configuration>

@@ -7,10 +7,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="list" resultType="Board">
 		SELECT *
-		FROM board
+		FROM board_zuaseyo
 		WHERE board_no > 0
 		ORDER BY board_no DESC, reg_date DESC
 	</select>
+	
+	<insert id="register" parameterType="Board">
+		INSERT INTO board_zuaseyo ( title, writer, content )
+					VALUES ( #{title}, #{writer}, #{content} )
+	</insert>
+	
+	<select id="read" resultType="Board">
+		SELECT *
+		FROM board_zuaseyo
+		WHERE board_no = #{boardNo}	
+	</select>
+	
+	<update id="modify" parameterType="Board">
+		UPDATE board_zuaseyo
+		SET title = #{title},
+			writer = #{writer},
+			content = #{content}
+		WHERE board_no = #{boardNo}
+	</update>
+	
+	<delete id="remove">
+		DELETE FROM board_zuaseyo
+		WHERE board_no = #{boardNo}
+	</delete>
 
    
 
