@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h3>회원정보수정</h3>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="수정하기">  
+  </form>
+  <form action="{% url 'accounts:delete' %}" method="POST">
+    {% csrf_token %}
+    <button>탈퇴하기</button>
+  </form>
+{% endblock content %}

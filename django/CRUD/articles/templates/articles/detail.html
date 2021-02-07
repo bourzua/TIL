@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h3 class="text-center">DETAIL</h3>
+  <h3>{{ article.pk }} 번 째 글</h3>
+  <hr>
+  <p>제목: {{ article.title }}</p>
+  <p>내용: {{ article.content }}</p>
+  <p>작성 시각: {{ article.created_at|date:"SHORT_DATE_FORMAT" }}</p>
+  <p>수정 시각: {{ article.updated_at|date:"M j, Y" }}</p>
+  <hr>
+  <h4>댓글 목록</h4>
+  {% if comments|length %}
+    <p>{{ comments|length }} 개의 댓글이 있습니다.</p>
+  {% endif %}
+  {% for comment in comments %}
+    <ul>
+      {{ comment.user }} : {{ comment.content }}
+    </ul>
+    {% if request.user == comment.user %}
+      <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="DELETE">
+      </form>    
+    {% endif %}
+  {% empty %}
+    <p>댓글이 아직 없어요..</p>
+  {% endfor %}
+  <hr>
+  {% if request.user.is_authenticated %}
+    <h4>댓글 작성</h4>
+    <form action="{% url 'articles:comments_create' article.pk %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit">
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}" style="color:#f280a6">[댓글을 작성하려면 로그인 하세요.]</a>
+  {% endif %}
+  <hr>
+  <a href="{% url 'articles:update' article.pk %}" style="color:#f280a6">[update]</a>
+  <br>
+  <a href="{% url 'articles:index' %}" style="color:#f280a6">[back]</a>
+  <br>
+  <form action="{% url 'articles:delete' article.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="DELETE">
+  </form>
+{% endblock content %}
