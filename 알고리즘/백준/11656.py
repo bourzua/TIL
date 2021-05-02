@@ -1,9 +1,9 @@
 import sys
 
-words = sys.stdin.readline().rstrip('\n')
+words = sys.stdin.readline().rstrip()
 wordsList = []
 
-for _ in range(len(words)):
+for _ in words:
     wordsList.append(words)
     words = words[1:]
 
