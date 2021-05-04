@@ -1,20 +1,19 @@
 def BFS(v):
     global ans
     visited[v] = 1
-    q = [v]
+    q = deque()
+    q.append(v)
     while q:
-        curr = q.pop(0)
+        curr = q.popleft()
         for i in graph[curr]:
             if visited[i] == 0:
-                if visited[curr] == 1:
-                    visited[i] = 2
-                elif visited[curr] == 2:
-                    visited[i] = 1
+                visited[i] = -visited[curr]
                 q.append(i)
             elif visited[i] == visited[curr]:
                 ans = 'NO'
                 return
 
+from collections import deque
 import sys
 N = int(sys.stdin.readline())
 

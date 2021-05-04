@@ -1,45 +1,46 @@
+# 인접리스트
+
 def DFS(v):
-    global dfsPath
-    dfsPath.append(v)
+    dfsList.append(v)
     visited[v] = 1
 
-    if len(graph[v]):
-        for i in range(len(graph[v])):
-            if visited[graph[v][i]] == 0:
-                DFS(graph[v][i])
+    for i in graph[v]:
+        if visited[i] == 0:
+            DFS(i)
 
 def BFS(v):
-    global bfsPath
-    global visited
-    q = [v]
-    bfsPath.append(v)
+    bfsList.append(v)
     visited[v] = 1
+    q = [v]
+
     while q:
         curr = q.pop(0)
-        for i in range(len(graph[curr])):
-            if visited[graph[curr][i]] == 0:
-                visited[graph[curr][i]] = 1
-                q.append(graph[curr][i])
-                bfsPath.append(graph[curr][i])
+        for i in graph[curr]:
+            if visited[i] == 0:
+                visited[i] = 1
+                bfsList.append(i)
+                q.append(i)
 
-N, M, V = map(int, input().split())
 
+
+import sys
+N, M, V = map(int, sys.stdin.readline().split())
 graph = [[] for _ in range(N+1)]
 visited = [0]*(N+1)
-# 연결 방식: 1. 연결리스트
+dfsList = []
+bfsList = []
+
+
 for i in range(M):
-    a, b = map(int, input().split())
+    a, b = map(int, sys.stdin.readline().split())
     graph[a].append(b)
     graph[b].append(a)
 
-for i in range(1, N+1):
-    graph[i].sort()
-
-dfsPath = []
-bfsPath = []
+for i in graph:
+    i.sort()
 
 DFS(V)
 visited = [0]*(N+1)
+print(*dfsList)
 BFS(V)
-print(*dfsPath)
-print(*bfsPath)
+print(*bfsList)
