@@ -1,23 +1,20 @@
-#BFS
+# DFS
 
 dr = [-1, 1, 0, 0]
 dc = [0, 0, -1, 1]
 
-def BFS(r, c):
+def DFS(r, c):
     global count
+    count += 1
     visited[r][c] = 1
-    q = [(r,c)]
-    while q:
-        curr_r, curr_c = q.pop(0)
-        count += 1
-        for a in range(4):
-            nr = curr_r + dr[a]
-            nc = curr_c + dc[a]
-            if nr<0 or nr>=N or nc<0 or nc>=N:
-                continue
-            if arr[nr][nc] == 1 and visited[nr][nc] == 0:
-                visited[nr][nc] = 1
-                q.append((nr, nc))
+
+    for a in range(4):
+        nr = r + dr[a]
+        nc = c + dc[a]
+        if nr < 0 or nr >= N or nc < 0 or nc >= N:
+            continue
+        if arr[nr][nc] == 1 and visited[nr][nc] == 0:
+            DFS(nr, nc)
 
 import sys
 N = int(sys.stdin.readline())
@@ -33,7 +30,7 @@ for i in range(N):
         if visited[i][j] == 0 and arr[i][j] == 1:
             totalCount += 1
             count = 0
-            BFS(i, j)
+            DFS(i, j)
             numberOfHouse.append(count)
 
 numberOfHouse.sort()
