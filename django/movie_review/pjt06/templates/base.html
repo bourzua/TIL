@@ -36,6 +36,9 @@
                             <button class="btn btn-light nav-link">LOGOUT</button>
                         </form>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'community:create' %}">CREATE</a>
+                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'accounts:signup' %}">SIGN UP</a>
@@ -44,9 +47,6 @@
                         <a class="nav-link" href="{% url 'accounts:login' %}">LOGIN</a>
                     </li> 
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'community:create' %}">CREATE</a>
-                </li>
             </ul>
         </div>
     </nav>

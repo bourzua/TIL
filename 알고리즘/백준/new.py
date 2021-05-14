@@ -1,6 +1,6 @@
-words = input()
-croatia = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
+from itertools import permutations
 
-for i in croatia:
-    words = words.replace(i, 'a')
-print(len(words))
+N, M = map(int, input().split())
+numList = [i for i in range(1, N+1)]
+hi = list(permutations(numList, M))
+print(hi)
