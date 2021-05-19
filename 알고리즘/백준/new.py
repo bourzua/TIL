@@ -1,6 +1,3 @@
-from itertools import permutations
+list = [1, 'a', 3, 4]
 
-N, M = map(int, input().split())
-numList = [i for i in range(1, N+1)]
-hi = list(permutations(numList, M))
-print(hi)
+print(list)
