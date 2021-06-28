@@ -1,12 +1,11 @@
-a = int(input())
-count = 0
+n = int(input())
+D = [0]*(n+1)
+D[1] = 0
 
-while a != 1:
-    count += 1
-    if a%3 == 0:
-        a = a / 3
-    elif a%2 == 0:
-        a = a / 2
-    else:
-        a = a - 1
-print(count)
+for i in range(2, n+1):
+    D[i] = D[i-1] + 1
+    if i%2 == 0 and D[i] > D[i//2] + 1:
+        D[i] = D[i//2] + 1
+    if i%3 == 0 and D[i] > D[i//3] + 1:
+        D[i] = D[i//3] + 1
+print(D[n])

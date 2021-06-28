@@ -1,32 +1,36 @@
-def rotate(arr):
-    global rec
-    new = [[0]*M for _ in range(N)]
-    for i in range(rotateNumber):
-        for a in range(i, N-i):
-            for b in range(i, M-i):
-                if a == i and i<b<M-i:
-                    new[a][b-1] = arr[a][b]
-                elif b == M-i-1 and i<a<N-i:
-                    new[a-1][b] = arr[a][b]
-                elif a == N-i-1 and i<=b<M-i-1:
-                    new[a][b+1] = arr[a][b]
-                elif b == i and i<=a<N-i-1:
-                    new[a+1][b] = arr[a][b]
-    rec = new
-
-
 N, M, R = map(int, input().split())
-rotateNumber = min(N,M) // 2
+a = [list(map(int, input().split())) for _ in range(N)]
+rotateNum = min(N,M)//2
+groups = []
 
-rec = []
+for k in range(rotateNum):
+    group = []
+    for j in range(k, M-k):
+        group.append(a[k][j])
+    for i in range(k+1, N-k-1):
+        group.append(a[i][M-1-k])
+    for j in range(M-1-k, k, -1):
+        group.append(a[N-1-k][j])
+    for i in range(N-1-k, k, -1):
+        group.append(a[i][k])
+    groups.append(group)
 
-for i in range(N):
-    rec.append(list(map(int, input().split())))
+for k in range(rotateNum):
+    group = groups[k]
+    l = len(group)
+    index = R%l
+    for j in range(k, M-k):
+        a[k][j] = group[index]
+        index = (index+1)%l
+    for i in range(k + 1, N - k - 1):
+        a[i][M - 1 - k] = group[index]
+        index = (index + 1) % l
+    for j in range(M-1-k, k, -1):
+        a[N-1-k][j] = group[index]
+        index = (index + 1) % l
+    for i in range(N-1-k, k, -1):
+        a[i][k] = group[index]
+        index = (index + 1) % l
 
-for i in range(R):
-    rotate(rec)
-
-for i in range(N):
-    for j in range(M):
-        print(rec[i][j], end=" ")
-    print()
+for row in a:
+    print(*row, sep=' ')
