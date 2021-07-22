@@ -2,12 +2,18 @@ package com.example.java.day4.inheritance;
 
 public class GoldCustomer extends Customer{
 
-    public GoldCustomer() {
-        bonusRatio = 0.05;
+    double saleRatio;
+
+    public GoldCustomer(int customerID, String customerName) {
+        super(customerID, customerName);
+        customerGrade = "GOLD";
+        bonusRatio = 0.02;
+        saleRatio = 0.1;
     }
     @Override
     public int calcPrice(int price) {
-        return super.calcPrice(price);
+        bonusPoint += price * bonusRatio;
+        return price - (int)(price * saleRatio);
     }
 
     @Override
