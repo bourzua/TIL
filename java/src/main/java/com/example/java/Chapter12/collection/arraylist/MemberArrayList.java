@@ -3,6 +3,7 @@ package com.example.java.Chapter12.collection.arraylist;
 import com.example.java.Chapter12.collection.Member;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MemberArrayList {
 
@@ -18,14 +19,25 @@ public class MemberArrayList {
 
     public boolean removeMember(int memberId) {
 
-        for (int i = 0; i < arrayList.size(); i++) {
-            Member member = arrayList.get(i);
+//        for (int i = 0; i < arrayList.size(); i++) {
+//            Member member = arrayList.get(i);
+//            int tempId = member.getMemberId();
+//            if ( tempId == memberId ) {
+//                arrayList.remove(i);
+//                return true;
+//            }
+//        }
+        Iterator<Member> iterator = arrayList.iterator();
+        while (iterator.hasNext()) {
+            Member member = iterator.next();
+
             int tempId = member.getMemberId();
-            if ( tempId == memberId ) {
-                arrayList.remove(i);
+            if (memberId == tempId) {
+                arrayList.remove(member);
                 return true;
             }
         }
+
         System.out.println(memberId + "가 존재하지 않습니다.");
         return false;
     }
