@@ -22,9 +22,9 @@ public class FrontControllerServletV4 extends HttpServlet {
     private Map<String, ControllerV4> controllerMap = new HashMap<>();
 
     public FrontControllerServletV4() {
-        controllerMap.put("/front-controller/v3/members/new-form", new MemberFormControllerV4());
-        controllerMap.put("/front-controller/v3/members/save", new MemberSaveControllerV4());
-        controllerMap.put("/front-controller/v3/members", new MemberListControllerV4());
+        controllerMap.put("/front-controller/v4/members/new-form", new MemberFormControllerV4());
+        controllerMap.put("/front-controller/v4/members/save", new MemberSaveControllerV4());
+        controllerMap.put("/front-controller/v4/members", new MemberListControllerV4());
     }
 
     @Override
@@ -39,7 +39,8 @@ public class FrontControllerServletV4 extends HttpServlet {
         }
 
         Map<String, String> paramMap = createParamMap(request);
-        Map<String, Object> model = new HashMap<>();
+        Map<String, Object> model = new HashMap<>();    //추가
+        // 뷰의 논리 이름 직접 반환
         String viewName = controller.process(paramMap, model);
 
         MyView view = viewResolver(viewName);
