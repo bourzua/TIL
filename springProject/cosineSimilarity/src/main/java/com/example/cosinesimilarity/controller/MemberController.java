@@ -49,5 +49,9 @@ public class MemberController {
         return "temp";
     }
 
-
+    @GetMapping("/logout")
+    public String logoutRequest(HttpSession session) {
+        session.removeAttribute("cosine-session-m");
+        return "redirect:/login";
+    }
 }
