@@ -18,5 +18,7 @@ public class MemberService {
             throw new CustomJoinException("중복된 아이디입니다.");
         }
         Member member = new Member(memberDto.getNickname(), memberDto.getPassword(), "일반");
+        memberRepository.save(member);
+        System.out.println("멤버 저장");
     }
 }
