@@ -42,4 +42,8 @@ public class Member {
     public String getPassword() {
         return password;
     }
+
+    public String getGrade() {
+        return grade;
+    }
 }

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/admin" method="post" th:object="${adminKeywordDto}">
+  <input type="text" placeholder="키워드" th:field="*{keyword}">
+  <button type="submit">영화 저장</button>
+</form>
+
+</body>
+</html>
