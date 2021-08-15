@@ -1,5 +1,7 @@
 package com.example.cosinesimilarity.entity;
 
+import com.example.cosinesimilarity.exception.LoginException;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,13 @@ public class Member {
         this.nickname = nickname;
         this.password = password;
         this.grade = grade;
+    }
+
+    public void matchPassword(String password) {
+        if (this.password.equals(password)) {
+            return;
+        }
+        throw new LoginException();
     }
 
     public Long getId() {

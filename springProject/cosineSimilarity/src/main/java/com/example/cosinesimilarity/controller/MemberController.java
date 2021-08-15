@@ -2,6 +2,7 @@ package com.example.cosinesimilarity.controller;
 
 import com.example.cosinesimilarity.dto.LoginDto;
 import com.example.cosinesimilarity.dto.MemberDto;
+import com.example.cosinesimilarity.entity.Member;
 import com.example.cosinesimilarity.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class MemberController {
@@ -32,6 +35,18 @@ public class MemberController {
     public String loginPage(Model model) {
         model.addAttribute("loginDto", new LoginDto());
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String loginRequest(LoginDto loginDto, HttpSession session) {
+        Member member = memberService.login(loginDto);
+        session.setAttribute("cosine-session-m", member);
+        return "redirect:/temp";
+    }
+
+    @GetMapping("/temp")
+    public String goTemp() {
+        return "temp";
     }
 
 
