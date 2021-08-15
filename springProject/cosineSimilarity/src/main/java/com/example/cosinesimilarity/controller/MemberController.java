@@ -41,12 +41,7 @@ public class MemberController {
     public String loginRequest(LoginDto loginDto, HttpSession session) {
         Member member = memberService.login(loginDto);
         session.setAttribute("cosine-session-m", member);
-        return "redirect:/temp";
-    }
-
-    @GetMapping("/temp")
-    public String goTemp() {
-        return "temp";
+        return "redirect:/";
     }
 
     @GetMapping("/logout")

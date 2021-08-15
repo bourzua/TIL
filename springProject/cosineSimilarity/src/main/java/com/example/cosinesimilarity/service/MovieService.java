@@ -1,5 +1,6 @@
 package com.example.cosinesimilarity.service;
 
+import com.example.cosinesimilarity.dto.MovieDto;
 import com.example.cosinesimilarity.entity.Movie;
 import com.example.cosinesimilarity.repository.MovieRepository;
 import com.google.gson.JsonArray;
@@ -10,6 +11,8 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,5 +73,18 @@ public class MovieService {
             summary = m.group(2);
         }
         return summary;
+    }
+
+    public List<MovieDto> getAllMovies() {
+        List<Movie> movies = movieRepository.findAll();
+
+        List<MovieDto> movies5 = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println(movies.get(i));
+            MovieDto movie = new MovieDto(movies.get(i).getTitle(), movies.get(i).getActor(), movies.get(i).getImage(), movies.get(i).getUserRating(), movies.get(i).getSummary());
+            movies5.add(movie);
+        }
+        return movies5;
     }
 }
