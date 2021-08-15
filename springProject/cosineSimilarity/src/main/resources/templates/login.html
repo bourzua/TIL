@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<!--<head th:replace="base.html :: nav"></head>-->
+<div class="loginForm">
+    <h1>Login</h1>
+    <div class="bootstrap">
+        <form action="/login" method="post" th:object="${loginDto}">
+            <div class="input-group mb-3">
+                <input type="text"
+                       placeholder="이름"
+                       th:field="*{name}"
+                       class="form-control"
+                       aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <input type="password"
+                       placeholder="비밀번호"
+                       th:field="*{password}"
+                       class="form-control"
+                       aria-describedby="inputGroup-sizing-default">
+            </div>
+            <button type="submit" class="btn btn-outline-danger">로그인</button>
+<!--            <div th:text="${errorMessage}"></div>-->
+        </form>
+    </div>
+</div>
+</body>
+<style>
+    .bootstrap {
+        width: 150px;
+        margin-left: 570px;
+        margin-top: 50px;
+    }
+
+    .loginForm {
+        text-align: center;
+        vertical-align: middle;
+        margin-top: 100px;
+    }
+</style>
+</html>
