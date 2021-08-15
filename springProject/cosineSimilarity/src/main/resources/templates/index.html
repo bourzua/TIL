@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<!--<head th:replace="base.html :: nav"></head>-->
+<head th:replace="base.html :: nav"></head>
 <div th:each="movie : ${movieList}">
     <img th:src="${movie.image}" alt="">
     <span>제목: </span><span th:text="${movie.title}"></span><span> | </span>

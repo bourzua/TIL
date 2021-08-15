@@ -21,7 +21,7 @@ public class AdminController {
     public String search(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("cosine-session-m");
         if (!member.getGrade().equals("어드민")) {
-            return "redirect:/temp";
+            return "redirect:/";
         }
         model.addAttribute("adminKeywordDto", new AdminKeywordDto());
         return "admin";
