@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--<head th:replace="base.html :: nav"></head>-->
+<div th:each="movie : ${movieList}">
+    <img th:src="${movie.image}" alt="">
+    <span>제목: </span><span th:text="${movie.title}"></span><span> | </span>
+    <span>평점: </span><span th:text="${movie.userRating}"></span><span> | </span>
+    <span>배우: </span><span th:text="${movie.actor}"></span><span> | </span>
+    <br/>
+</div>
+<hr>
+<div th:if="${session['cosine-session-m'] != null}">
+    <p th:text="${session['cosine-session-m'].nickname}"></p>
+    <p>님 안녕하세요!</p>
+    <p th:text="${session['cosine-session-m'].grade}"></p>
+    <p>계정입니다.</p>
+</div>
+</body>
+</html>
