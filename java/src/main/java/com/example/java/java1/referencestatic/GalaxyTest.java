@@ -1,4 +1,4 @@
-package com.example.java.java_hp.referencestatic;
+package com.example.java.java1.referencestatic;
 
 public class GalaxyTest {
     public static void main(String[] args) {

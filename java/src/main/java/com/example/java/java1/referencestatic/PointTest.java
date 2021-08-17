@@ -1,4 +1,4 @@
-package com.example.java.java_hp.referencestatic;
+package com.example.java.java1.referencestatic;
 
 public class PointTest {
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ class Point {
     }
 
     String toStr() {
-        return String.format("(%d, %d)", x, y);
+        return String.format("(%d, %d)", this.x, this.y);
     }
 
     static double distance(Point p1, Point p2) {

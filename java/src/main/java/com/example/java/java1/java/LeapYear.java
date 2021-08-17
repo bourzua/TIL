@@ -1,4 +1,4 @@
-package com.example.java.java_hp.java;
+package com.example.java.java1.java;
 
 import java.util.Scanner;
 

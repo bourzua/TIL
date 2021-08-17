@@ -1,4 +1,4 @@
-package com.example.java.java_hp.oop;
+package com.example.java.java1.oop;
 
 public class CatTest2 {
     public static void main(String[] args) {
