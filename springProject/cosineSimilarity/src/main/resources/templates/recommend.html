@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<head th:replace="base.html :: nav"></head>
+
+
+<form action="/recommend" method="post" th:object="${recommendKeywordDto}">
+    <input
+            type="text"
+            placeholder="키워드 입력"
+            th:field="*{keyword}">
+    <button type="submit">추천</button>
+</form>
+<hr>
+<div th:each="movie : ${recommendedMovies}">
+    <img th:src="${movie.image}" alt="">
+    <br>
+    <span>제목: </span><span th:text="${movie.title}"></span><span> | </span>
+    <span>평점: </span><span th:text="${movie.userRating}"></span><span> | </span>
+    <span>배우: </span><span th:text="${movie.actor}"></span>
+    <br>
+    <span>줄거리: </span><span th:text="${movie.summary}"></span>
+    <hr>
+</div>
+
+
+</body>
+</html>
