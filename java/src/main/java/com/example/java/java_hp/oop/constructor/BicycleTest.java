@@ -1,4 +1,4 @@
-package com.example.java.java_hp.oop;
+package com.example.java.java_hp.oop.constructor;
 
 public class BicycleTest { // 시나리오 작성
     public static void main(String[] args) {

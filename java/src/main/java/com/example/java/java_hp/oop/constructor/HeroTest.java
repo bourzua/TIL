@@ -1,4 +1,4 @@
-package com.example.java.java_hp.oop;
+package com.example.java.java_hp.oop.constructor;
 
 public class HeroTest {
     public static void main(String[] args) {
